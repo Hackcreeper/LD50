@@ -12,6 +12,7 @@ namespace GameFlow
         public Player player;
         public float introAnimationTime = 1f;
         public Intro intro;
+        public Background background;
 
         #endregion
 
@@ -71,6 +72,8 @@ namespace GameFlow
             {
                 intro.creditsLabel.color = value;
             }, Color.white, new Color(1, 1, 1, 0), introAnimationTime);
+            
+            background.OnStart();
             
             LeanTween.move(
                     gameObject,

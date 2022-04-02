@@ -1003,6 +1003,7 @@ MonoBehaviour:
   player: {fileID: 1767456969}
   introAnimationTime: 1
   intro: {fileID: 333066612}
+  background: {fileID: 1179873148}
 --- !u!1 &333066610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2285,7 @@ GameObject:
   - component: {fileID: 1179873145}
   - component: {fileID: 1179873147}
   - component: {fileID: 1179873146}
+  - component: {fileID: 1179873148}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2300,7 +2302,7 @@ RectTransform:
   m_GameObject: {fileID: 1179873144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734786995}
@@ -2349,6 +2351,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179873144}
   m_CullTransparentMesh: 1
+--- !u!114 &1179873148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179873144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c517bc7340bd4d1192dc59d9014cf6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1179873146}
+  flowCamera: {fileID: 330585548}
 --- !u!1 &1226455523
 GameObject:
   m_ObjectHideFlags: 0
