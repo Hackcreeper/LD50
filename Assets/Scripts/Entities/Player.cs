@@ -35,9 +35,10 @@ namespace Entities
         private float _xVelocity;
         private bool _started;
         private bool _grounded;
-        private int _score;
+        private int _bonusScore;
         private bool _dead;
         private bool _introStarted;
+        private int _minScore;
         
         #endregion
 
@@ -55,8 +56,6 @@ namespace Entities
                 return;
             }
 
-            _score++;
-            
             var platform = collision.gameObject.GetComponent<Platform>();
             if (!platform)
             {
@@ -74,6 +73,11 @@ namespace Entities
                 return;
             }
             
+            if (GetScore() > 0)
+            {
+                scoreLabel.text = GetScore().ToString();
+            }
+            
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
 
@@ -85,7 +89,15 @@ namespace Entities
         
         #region PUBLIC_METHODS
 
-        public int GetScore() => _score;
+        public int GetScore()
+        {
+            var scoreByDistance = Mathf.FloorToInt(transform.position.y / 5f);
+            var totalScore = Mathf.Max(_minScore, scoreByDistance + _bonusScore);
+
+            _minScore = totalScore;
+            
+            return totalScore;
+        }
 
         public bool HasStarted() => _started;
         
@@ -93,11 +105,6 @@ namespace Entities
         {
             _rigidbody2D.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
             _forceCooldown = 0.8f;
-
-            if (_score > 0)
-            {
-                scoreLabel.text = _score.ToString();
-            }
         }
 
         #endregion
@@ -160,8 +167,18 @@ namespace Entities
 
         public void OnStart(InputAction.CallbackContext context)
         {
-            if (!context.started || _started || _introStarted)
+            if (!context.started)
             {
+                return;
+            }
+
+            if (_started || _introStarted)
+            {
+                if (Application.isEditor)
+                {
+                    Jump(jumpForce * 5);
+                }
+                
                 return;
             }
 
