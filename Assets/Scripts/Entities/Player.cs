@@ -1,3 +1,4 @@
+using GameFlow;
 using Platforms;
 using TMPro;
 using Ui;
@@ -18,13 +19,13 @@ namespace Entities
         public LayerMask groundLayer;
         public TextMeshProUGUI scoreLabel;
         public GameOver gameOver;
+        public FlowCamera flowCamera;
         
         #endregion
 
         #region PRIVATE_VARS
         
         private Rigidbody2D _rigidbody2D;
-        private Camera _camera;
         
         private float _forceCooldown = .5f;
         private float _xVelocity;
@@ -32,6 +33,7 @@ namespace Entities
         private bool _grounded;
         private int _score;
         private bool _dead;
+        private bool _introStarted;
         
         #endregion
 
@@ -40,7 +42,6 @@ namespace Entities
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _camera = Camera.main;
         }
 
         private void OnCollisionStay2D(Collision2D collision)
@@ -81,6 +82,8 @@ namespace Entities
         #region PUBLIC_METHODS
 
         public int GetScore() => _score;
+
+        public bool HasStarted() => _started;
         
         public void Jump(float force)
         {
@@ -99,7 +102,7 @@ namespace Entities
         
         private void CheckForDead()
         {
-            var viewPort = _camera.WorldToViewportPoint(transform.position);
+            var viewPort = flowCamera.GetComponent<Camera>().WorldToViewportPoint(transform.position);
             if (viewPort.y > 0)
             {
                 return;
@@ -128,15 +131,20 @@ namespace Entities
             _xVelocity = context.ReadValue<Vector2>().x;
         }
 
-        public void OnJump(InputAction.CallbackContext context)
+        public void OnStart(InputAction.CallbackContext context)
         {
-            if (!context.started || _started)
+            if (!context.started || _started || _introStarted)
             {
                 return;
             }
 
-            Jump(jumpForce);
-            _started = true;
+            _introStarted = true;
+
+            flowCamera.OnStart(() =>
+            {
+                Jump(jumpForce);
+                _started = true;
+            });
         }
 
         #endregion
