@@ -30,6 +30,8 @@ namespace Entities
         public float tooltipFadeOutSpeed = 1.5f;
         public float tooltipFadeDelay = 2f;
 
+        public Transform model;
+
         #endregion
 
         #region PRIVATE_VARS
@@ -85,11 +87,12 @@ namespace Entities
 
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
-
+            
+            UpdateModelScale();
             CheckForGrounded();
             CheckForDead();
         }
-
+        
         #endregion
 
         #region PUBLIC_METHODS
@@ -120,32 +123,34 @@ namespace Entities
         public void ShowTooltip(string text)
         {
             tooltipLabel.text = text;
-            tooltipLabel.gameObject.SetActive(true);
+            var tooltipGo = tooltipLabel.gameObject;
+            
+            tooltipGo.SetActive(true);
 
-            LeanTween.cancel(tooltipLabel.gameObject);
+            LeanTween.cancel(tooltipGo);
 
-            LeanTween.value(tooltipLabel.gameObject, color => { tooltipLabel.color = color; },
+            LeanTween.value(tooltipGo, color => { tooltipLabel.color = color; },
                 new Color(0, 0, 0, 0),
                 Color.black,
                 tooltipFadeInSpeed
             );
 
-            LeanTween.moveLocalY(tooltipLabel.gameObject, 1.2f, tooltipFadeInSpeed)
+            LeanTween.moveLocalY(tooltipGo, 1.2f, tooltipFadeInSpeed)
                 .setOnComplete(() =>
                 {
-                    LeanTween.moveLocalY(tooltipLabel.gameObject, 1f, tooltipFadeOutSpeed)
+                    LeanTween.moveLocalY(tooltipGo, 1f, tooltipFadeOutSpeed)
                         .setDelay(tooltipFadeDelay);
                 });
 
             // Animate it to fade out after 3 seconds
 
-            LeanTween.value(tooltipLabel.gameObject, color => { tooltipLabel.color = color; },
+            LeanTween.value(tooltipGo, color => { tooltipLabel.color = color; },
                     Color.black,
                     new Color(0, 0, 0, 0), tooltipFadeOutSpeed)
                 .setDelay(tooltipFadeInSpeed + tooltipFadeDelay)
                 .setOnComplete(() =>
                 {
-                    tooltipLabel.gameObject.SetActive(false);
+                    tooltipGo.SetActive(false);
                     tooltipLabel.transform.localPosition = new Vector3(0, 1f, 0f);
                 });
         }
@@ -198,6 +203,23 @@ namespace Entities
                 groundLayer
             );
         }
+        
+        private void UpdateModelScale()
+        {
+            if (_xVelocity == 0)
+            {
+                return;
+            }
+
+            var modelLocalScale = model.localScale;
+            var xScale = Mathf.Abs(modelLocalScale.x);
+
+            model.localScale = new Vector3(
+                _xVelocity > 0 ? -xScale : xScale,
+                modelLocalScale.y,
+                modelLocalScale.z
+            );
+        }
 
         #endregion
 
@@ -205,6 +227,11 @@ namespace Entities
 
         public void OnMove(InputAction.CallbackContext context)
         {
+            if (!_started)
+            {
+                return;
+            }
+            
             _xVelocity = context.ReadValue<Vector2>().x;
         }
 
