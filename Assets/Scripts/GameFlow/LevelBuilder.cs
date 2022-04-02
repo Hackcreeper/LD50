@@ -27,7 +27,6 @@ namespace GameFlow
             for (var i = 0; i < toCreate; i++)
             {
                 var distance = distanceCurve.Evaluate(_steps * difficultyMultiplier) * 10f;
-                Debug.Log("Last distance = " + distance);
                 
                 SpawnPlatform(_lastY + distance);
                 _lastY += distance;

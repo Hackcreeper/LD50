@@ -1,4 +1,5 @@
-using System;
+using TMPro;
+using Ui;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,44 +8,100 @@ namespace Entities
     [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
     {
+        #region PUBLIC_VARS
+        
         public float jumpForce = 10f;
         public float moveSpeed = 5f;
         public Transform groundCheckStartPosition;
         public float groundCheckDistance = 0.1f;
         public LayerMask groundLayer;
+        public TextMeshProUGUI scoreLabel;
+        public GameOver gameOver;
+        
+        #endregion
 
-        private float _forceCooldown = .5f;
+        #region PRIVATE_VARS
+        
         private Rigidbody2D _rigidbody2D;
+        private Camera _camera;
+        
+        private float _forceCooldown = .5f;
         private float _xVelocity;
         private bool _started;
         private bool _grounded;
+        private int _score;
+        private bool _dead;
+        
+        #endregion
 
+        #region UNITY_FUNCTIONS
+        
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _camera = Camera.main;
         }
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (_forceCooldown > 0f || !_grounded)
+            if (_forceCooldown > 0f || !_grounded || !_started || _dead)
             {
                 return;
             }
 
+            _score++;
             Jump();
-        }
-
-        private void Jump()
-        {
-            _rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            _forceCooldown = 0.8f;
         }
 
         private void Update()
         {
+            if (_dead)
+            {
+                return;
+            }
+            
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
 
+            CheckForGrounded();
+            CheckForDead();
+        }
+        
+        #endregion
+        
+        #region PUBLIC_METHODS
+
+        public int GetScore() => _score;
+        
+        #endregion
+        
+        #region PRIVATE_METHODS
+        
+        private void Jump()
+        {
+            _rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            _forceCooldown = 0.8f;
+
+            if (_score > 0)
+            {
+                scoreLabel.text = _score.ToString();
+            }
+        }
+        
+        private void CheckForDead()
+        {
+            var viewPort = _camera.WorldToViewportPoint(transform.position);
+            if (viewPort.y > 0)
+            {
+                return;
+            }
+
+            _dead = true;
+            gameOver.OnPlayerDeath();
+        }
+
+        private void CheckForGrounded()
+        {
             _grounded = Physics2D.Raycast(
                 groundCheckStartPosition.position,
                 -transform.up,
@@ -53,6 +110,10 @@ namespace Entities
             );
         }
 
+        #endregion
+        
+        #region INPUT_MOVEMENTS
+        
         public void OnMove(InputAction.CallbackContext context)
         {
             _xVelocity = context.ReadValue<Vector2>().x;
@@ -69,15 +130,6 @@ namespace Entities
             _started = true;
         }
 
-        private void OnDrawGizmos()
-        {
-            if (!groundCheckStartPosition)
-            {
-                return;
-            }
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(groundCheckStartPosition.position, -transform.up * groundCheckDistance);
-        }
+        #endregion
     }
 }
