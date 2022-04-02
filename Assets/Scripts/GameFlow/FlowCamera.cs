@@ -19,8 +19,8 @@ namespace GameFlow
 
         private float _offsetY = 0.64f;
 
-        private float _originalY = 4.86f;
-        private float _originalZ = -18.44f;
+        private float _originalY = 0.75f;
+        private float _originalZ = -10.2f;
 
         private float _minY;
 
