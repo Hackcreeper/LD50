@@ -2295,6 +2295,9 @@ MonoBehaviour:
   - prefab: {fileID: 2689698548708479279, guid: edd43a16cd0714c308af7ed004c54e41,
       type: 3}
     chance: 10
+  - prefab: {fileID: 3810054460898629737, guid: 51ca2aa574176449184b62b5ffe32366,
+      type: 3}
+    chance: 10
   distanceCurve:
     serializedVersion: 2
     m_Curve:
