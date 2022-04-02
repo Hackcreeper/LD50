@@ -212,12 +212,21 @@ namespace Entities
             }
 
             var modelLocalScale = model.localScale;
+            var modelLocalPosition = model.localPosition;
+            
             var xScale = Mathf.Abs(modelLocalScale.x);
+            var xPos = Mathf.Abs(modelLocalPosition.x);
 
             model.localScale = new Vector3(
                 _xVelocity > 0 ? -xScale : xScale,
                 modelLocalScale.y,
                 modelLocalScale.z
+            );
+
+            model.localPosition = new Vector3(
+                _xVelocity > 0 ? xPos : -xPos,
+                modelLocalPosition.y,
+                modelLocalPosition.z
             );
         }
 

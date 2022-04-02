@@ -2536,7 +2536,7 @@ MonoBehaviour:
   pickups:
   - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
       type: 3}
-    chance: 50
+    chance: 5
   distanceCurve:
     serializedVersion: 2
     m_Curve:
