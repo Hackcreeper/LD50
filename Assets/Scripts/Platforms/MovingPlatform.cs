@@ -25,8 +25,10 @@ namespace Platforms
             _collider = GetComponent<BoxCollider2D>();
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             if (transform.position.x >= 4 - _collider.size.x / 2f)
             {
                 _movingRight = false;

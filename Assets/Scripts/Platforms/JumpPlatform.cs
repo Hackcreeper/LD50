@@ -6,7 +6,7 @@ namespace Platforms
     {
         public float jumpForce = 20f;
         
-        public override void OnPlayerEnter(Player player)
+        protected override void OnEnter(Player player)
         {
             player.Jump(jumpForce);
         }

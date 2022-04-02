@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Pickups;
 using Platforms;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,6 +13,7 @@ namespace GameFlow
         
         public GameObject basePlatformPrefab;
         public PlatformData[] platforms;
+        public PickupData[] pickups;
         
         public AnimationCurve distanceCurve;
         public float difficultyMultiplier = 0.0001f;
@@ -65,7 +67,25 @@ namespace GameFlow
             var platform = Instantiate(GetPlatformPrefab(), transform);
             platform.transform.position = new Vector3(Random.Range(-4f, 4f), y, 0);
 
-            _platforms.Add(y, platform.GetComponent<Platform>());
+            var platformComponent = platform.GetComponent<Platform>();
+
+            SpawnPickup(platformComponent);
+            
+            _platforms.Add(y, platformComponent);
+        }
+
+        private void SpawnPickup(Platform platform)
+        {
+            var pickupPrefab = GetPickupPrefab();
+            if (!pickupPrefab)
+            {
+                return;
+            }
+            
+            var pickup = Instantiate(pickupPrefab, transform);
+            pickup.transform.position = platform.transform.position + new Vector3(0, .5f, 0);
+
+            platform.pickup = pickup.GetComponent<Pickup>();
         }
 
         private GameObject GetPlatformPrefab()
@@ -73,6 +93,13 @@ namespace GameFlow
             var possible = (from platform in platforms where Random.Range(0, 100) <= platform.chance select platform.prefab).ToList();
 
             return possible.Count ==  0 ? basePlatformPrefab : possible[Random.Range(0, possible.Count)];
+        }
+        
+        private GameObject GetPickupPrefab()
+        {
+            var possible = (from pickup in pickups where Random.Range(0, 100) <= pickup.chance select pickup.prefab).ToList();
+
+            return possible.Count == 0 ? null : possible[Random.Range(0, possible.Count)];
         }
         
         #endregion
