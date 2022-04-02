@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Platforms;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,15 +8,27 @@ namespace GameFlow
 {
     public class LevelBuilder : MonoBehaviour
     {
-        public GameObject platformPrefab;
+        #region PUBLIC_VARS
+        
+        public GameObject basePlatformPrefab;
+        public PlatformData[] platforms;
+        
         public AnimationCurve distanceCurve;
         public float difficultyMultiplier = 0.0001f;
         
-        private readonly Dictionary<float, Transform> _platforms = new();
+        #endregion
+        
+        #region PRIVATE_VARS
+        
+        private readonly Dictionary<float, Platform> _platforms = new();
         private Camera _camera;
         private float _lastY = -2;
-        private int _steps = 0;
+        private int _steps;
+        
+        #endregion
 
+        #region UNITY_FUNCTIONS
+        
         private void Awake()
         {
             _camera = Camera.main;
@@ -43,12 +56,25 @@ namespace GameFlow
             toRemove.ForEach(y => _platforms.Remove(y));
         }
 
+        #endregion
+        
+        #region PRIVATE_METHODS
+        
         private void SpawnPlatform(float y)
         {
-            var platform = Instantiate(platformPrefab, transform);
+            var platform = Instantiate(GetPlatformPrefab(), transform);
             platform.transform.position = new Vector3(Random.Range(-4f, 4f), y, 0);
 
-            _platforms.Add(y, platform.transform);
+            _platforms.Add(y, platform.GetComponent<Platform>());
         }
+
+        private GameObject GetPlatformPrefab()
+        {
+            var possible = (from platform in platforms where Random.Range(0, 100) <= platform.chance select platform.prefab).ToList();
+
+            return possible.Count ==  0 ? basePlatformPrefab : possible[Random.Range(0, possible.Count)];
+        }
+        
+        #endregion
     }
 }

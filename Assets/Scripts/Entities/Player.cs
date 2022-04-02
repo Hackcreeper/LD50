@@ -1,3 +1,4 @@
+using Platforms;
 using TMPro;
 using Ui;
 using UnityEngine;
@@ -44,13 +45,21 @@ namespace Entities
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (_forceCooldown > 0f || !_grounded || !_started || _dead)
+            if (_forceCooldown > 0f || !_grounded || !_started || _dead || _rigidbody2D.velocity.y > 0.1f)
             {
                 return;
             }
 
             _score++;
-            Jump();
+            
+            var platform = collision.gameObject.GetComponent<Platform>();
+            if (!platform)
+            {
+                Jump(jumpForce);
+                return;
+            }
+            
+            platform.OnPlayerEnter(this);
         }
 
         private void Update()
@@ -73,13 +82,9 @@ namespace Entities
 
         public int GetScore() => _score;
         
-        #endregion
-        
-        #region PRIVATE_METHODS
-        
-        private void Jump()
+        public void Jump(float force)
         {
-            _rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
             _forceCooldown = 0.8f;
 
             if (_score > 0)
@@ -87,6 +92,10 @@ namespace Entities
                 scoreLabel.text = _score.ToString();
             }
         }
+
+        #endregion
+        
+        #region PRIVATE_METHODS
         
         private void CheckForDead()
         {
@@ -126,7 +135,7 @@ namespace Entities
                 return;
             }
 
-            Jump();
+            Jump(jumpForce);
             _started = true;
         }
 

@@ -2098,8 +2098,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec57a283ac14127b3a22bb02ee8035a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformPrefab: {fileID: 4653320455351390845, guid: 1b9244ba848424ab4bafbdc48de9524e,
+  basePlatformPrefab: {fileID: 4653320455351390845, guid: 1b9244ba848424ab4bafbdc48de9524e,
     type: 3}
+  platforms:
+  - prefab: {fileID: 2689698548708479279, guid: edd43a16cd0714c308af7ed004c54e41,
+      type: 3}
+    chance: 10
   distanceCurve:
     serializedVersion: 2
     m_Curve:

@@ -264,7 +264,7 @@ public class LeanTween : MonoBehaviour {
     private static float previousRealTime;
     #endif
     public static float dtActual;
-    private static uint global_counter = 0;
+    private static uint global_counter;
     private static int i;
     private static int j;
     private static int finishedCnt;
@@ -1000,7 +1000,7 @@ public class LeanTween : MonoBehaviour {
         }
     }
 
-    public static int startSearch = 0;
+    public static int startSearch;
     public static LTDescr d;
 
     private static LTDescr pushNewTween( GameObject gameObject, Vector3 to, float time, LTDescr tween ){
@@ -2731,7 +2731,7 @@ public class LeanTween : MonoBehaviour {
 
     private static System.Action<LTEvent>[] eventListeners;
     private static GameObject[] goListeners;
-    private static int eventsMaxSearch = 0;
+    private static int eventsMaxSearch;
     public static int EVENTS_MAX = 10;
     public static int LISTENERS_MAX = 10;
     private static int INIT_LISTENERS_MAX = LISTENERS_MAX;
@@ -2961,7 +2961,7 @@ public class LTBezierPath {
 
     private LTBezier[] beziers;
     private float[] lengthRatio;
-    private int currentBezier=0,previousBezier=0;
+    private int currentBezier=0,previousBezier;
 
     public LTBezierPath(){ }
     public LTBezierPath( Vector3[] pts_ ){
@@ -3171,7 +3171,7 @@ public class LTSpline {
     /**
     * @property {float} distance distance of the spline (in unity units)
     */
-    public float distance = 0f;
+    public float distance;
 
     public bool constantSpeed = true;
 
@@ -3637,7 +3637,7 @@ public class LTRect : System.Object{
     public string labelStr;
     public LTGUI.Element_Type type;
     public GUIStyle style;
-    public bool useColor = false;
+    public bool useColor;
     public Color color = Color.white;
     public bool fontScaleToFit;
     public bool useSimpleScale;
@@ -3860,8 +3860,8 @@ public class LTGUI {
     private static int[] buttonLastFrame;
     private static LTRect r;
     private static Color color = Color.white;
-    private static bool isGUIEnabled = false;
-    private static int global_counter = 0;
+    private static bool isGUIEnabled;
+    private static int global_counter;
 
     public enum Element_Type{
         Texture,
