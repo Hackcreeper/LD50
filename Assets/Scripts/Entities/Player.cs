@@ -14,7 +14,11 @@ namespace Entities
         
         public float jumpForce = 10f;
         public float moveSpeed = 5f;
+        
         public Transform groundCheckStartPosition;
+        public Transform groundCheckLeftStartPosition;
+        public Transform groundCheckRightStartPosition;
+        
         public float groundCheckDistance = 0.1f;
         public LayerMask groundLayer;
         public TextMeshProUGUI scoreLabel;
@@ -114,8 +118,31 @@ namespace Entities
 
         private void CheckForGrounded()
         {
-            _grounded = Physics2D.Raycast(
-                groundCheckStartPosition.position,
+            if (FireGroundRaycast(groundCheckStartPosition.position))
+            {
+                _grounded = true;
+                return;
+            }
+            
+            if (FireGroundRaycast(groundCheckLeftStartPosition.position))
+            {
+                _grounded = true;
+                return;
+            }
+            
+            if (FireGroundRaycast(groundCheckRightStartPosition.position))
+            {
+                _grounded = true;
+                return;
+            }
+
+            _grounded = false;
+        }
+
+        private bool FireGroundRaycast(Vector3 startPosition)
+        {
+            return Physics2D.Raycast(
+                startPosition,
                 -transform.up,
                 groundCheckDistance,
                 groundLayer
