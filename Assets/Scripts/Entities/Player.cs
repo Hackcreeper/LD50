@@ -26,12 +26,13 @@ namespace Entities
         public GameOver gameOver;
         public FlowCamera flowCamera;
         public TextMeshPro tooltipLabel;
-        
+
         public float tooltipFadeInSpeed = 0.4f;
         public float tooltipFadeOutSpeed = 1.5f;
         public float tooltipFadeDelay = 2f;
 
         public Transform model;
+        public Animator animator;
 
         #endregion
 
@@ -48,6 +49,8 @@ namespace Entities
         private bool _introStarted;
         private int _minScore;
         private bool _scoreVisible;
+
+        private static readonly int JumpingAction = Animator.StringToHash("jumping");
 
         #endregion
 
@@ -92,16 +95,16 @@ namespace Entities
             {
                 return;
             }
-            
+
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
-            
+
             UpdateScoreLabel();
             UpdateModelScale();
             CheckForGrounded();
             CheckForDead();
         }
-        
+
         #endregion
 
         #region PUBLIC_METHODS
@@ -120,6 +123,9 @@ namespace Entities
 
         public void Jump(float force)
         {
+            animator.SetBool(JumpingAction, true);
+            LeanTween.delayedCall(animator.gameObject, 0.5f, () => animator.SetBool(JumpingAction, false));
+
             _rigidbody2D.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
             _forceCooldown = 0.8f;
         }
@@ -133,7 +139,7 @@ namespace Entities
         {
             tooltipLabel.text = text;
             var tooltipGo = tooltipLabel.gameObject;
-            
+
             tooltipGo.SetActive(true);
 
             LeanTween.cancel(tooltipGo);
@@ -212,7 +218,7 @@ namespace Entities
                 groundLayer
             );
         }
-        
+
         private void UpdateModelScale()
         {
             if (_xVelocity == 0)
@@ -222,7 +228,7 @@ namespace Entities
 
             var modelLocalScale = model.localScale;
             var modelLocalPosition = model.localPosition;
-            
+
             var xScale = Mathf.Abs(modelLocalScale.x);
             var xPos = Mathf.Abs(modelLocalPosition.x);
 
@@ -245,7 +251,7 @@ namespace Entities
             {
                 return;
             }
-            
+
             scoreLabel.text = GetScore().ToString();
 
             if (_scoreVisible)
@@ -267,7 +273,7 @@ namespace Entities
             {
                 return;
             }
-            
+
             _xVelocity = context.ReadValue<Vector2>().x;
         }
 
