@@ -50,6 +50,7 @@ namespace Ui
 
             LeanTween.scale(scoreLabel.gameObject, Vector3.zero, scoreScaleTime)
                 .setEaseSpring()
+                .setIgnoreTimeScale(true)
                 .setOnComplete(ShowGameOver);
         }
 
@@ -81,17 +82,20 @@ namespace Ui
                     _image.color.b,
                     value
                 );
-            }, 0f, 1f / 255f * 160f, gameOverFadeTime);
+            }, 0f, 1f / 255f * 160f, gameOverFadeTime).setIgnoreTimeScale(true);
 
             LeanTween.moveY(gameOverLabel.rectTransform, -100, gameOverFadeTime)
+                .setIgnoreTimeScale(true)
                 .setEaseInOutQuint();
 
             LeanTween.scale(gameOverScoreLabel.rectTransform, Vector3.one, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setDelay(gameOverFadeTime / 2f)
                 .setOvershoot(1.3f)
                 .setEaseSpring();
 
             LeanTween.scaleX(playAgainButton.gameObject, 1f, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setDelay(gameOverFadeTime / 2f)
                 .setOvershoot(1.3f)
                 .setEaseSpring();
@@ -106,11 +110,13 @@ namespace Ui
 
             LeanTween
                 .scaleX(nameInput.gameObject, 1f, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setDelay(gameOverFadeTime / 2f)
                 .setOvershoot(1.3f)
                 .setEaseSpring();
 
             LeanTween.scaleX(submitScoreButton.gameObject, 1f, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setDelay(gameOverFadeTime / 2f)
                 .setOvershoot(1.3f)
                 .setEaseSpring();
@@ -127,9 +133,11 @@ namespace Ui
         {
             LeanTween
                 .scaleX(nameInput.gameObject, 0f, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setEaseSpring();
 
             LeanTween.scaleX(submitScoreButton.gameObject, 0f, gameOverFadeTime / 1.5f)
+                .setIgnoreTimeScale(true)
                 .setEaseSpring()
                 .setOnComplete(() => { GameJoltUI.Instance.ShowLeaderboards(); });
         }

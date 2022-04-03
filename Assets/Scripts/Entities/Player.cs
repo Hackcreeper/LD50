@@ -304,6 +304,22 @@ namespace Entities
             });
         }
 
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (!context.started)
+            {
+                return;
+            }
+
+            if (Pause.Instance.IsPaused())
+            {
+                Pause.Instance.ContinueGame();
+                return;
+            }
+            
+            Pause.Instance.PauseGame();
+        }
+
         #endregion
     }
 }
