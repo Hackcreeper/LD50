@@ -24,6 +24,9 @@ ModelImporter:
   - first:
       74: 798323564347123367
     second: Armature|takeoff
+  - first:
+      74: 5449073193131188545
+    second: Armature|CubeAction
   externalObjects: {}
   materials:
     materialImportMode: 2
