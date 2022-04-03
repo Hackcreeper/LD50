@@ -8,18 +8,10 @@ namespace Ui
     {
         #region PUBLIC_VARS
         
-        public Image image;
         public FlowCamera flowCamera;
-        public float parallaxSpeed = 2; // how many pixels to move for each unit moved in the camera?
         
         #endregion
         
-        #region PRIVATE_VARS
-
-        private float _startY;
-        
-        #endregion
-
         #region PUBLIC_METHODS
         
         public void OnStart()

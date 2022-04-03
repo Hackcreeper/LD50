@@ -48,6 +48,7 @@ namespace Entities
         private bool _dead;
         private bool _introStarted;
         private int _minScore;
+        private bool _scoreVisible;
 
         #endregion
 
@@ -92,15 +93,11 @@ namespace Entities
             {
                 return;
             }
-
-            if (GetScore() > 0)
-            {
-                scoreLabel.text = GetScore().ToString();
-            }
-
+            
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
             
+            UpdateScoreLabel();
             UpdateModelScale();
             CheckForGrounded();
             CheckForDead();
@@ -241,6 +238,24 @@ namespace Entities
                 modelLocalPosition.y,
                 modelLocalPosition.z
             );
+        }
+
+        private void UpdateScoreLabel()
+        {
+            if (GetScore() <= 0)
+            {
+                return;
+            }
+            
+            scoreLabel.text = GetScore().ToString();
+
+            if (_scoreVisible)
+            {
+                return;
+            }
+
+            LeanTween.moveY(scoreLabel.rectTransform, -48, 0.35f);
+            _scoreVisible = true;
         }
 
         #endregion
