@@ -41,24 +41,10 @@ namespace Platforms
 
         public void OnPlayerEnter(Player player)
         {
-            CollectPickup(player);
             OnEnter(player);
         }
 
-        #endregion
-
-        #region PROTECTED_METHODS
-
-        protected virtual void OnEnter(Player player)
-        {
-            player.Jump(player.jumpForce);
-        }
-
-        #endregion
-
-        #region PRIVATE_METHODS
-
-        private void CollectPickup(Player player)
+        public void CollectPickup(Player player)
         {
             if (!pickup)
             {
@@ -67,6 +53,15 @@ namespace Platforms
             
             pickup.OnPlayerCollect(player);
             pickup = null;
+        }
+        
+        #endregion
+
+        #region PROTECTED_METHODS
+
+        protected virtual void OnEnter(Player player)
+        {
+            player.Jump(player.jumpForce);
         }
 
         #endregion

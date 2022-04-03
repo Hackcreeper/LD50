@@ -85,7 +85,9 @@ namespace GameFlow
             var pickup = Instantiate(pickupPrefab, transform);
             pickup.transform.position = platform.transform.position + new Vector3(0, .5f, 0);
 
-            platform.pickup = pickup.GetComponent<Pickup>();
+            var pickupComponent = pickup.GetComponent<Pickup>();
+            platform.pickup = pickupComponent;
+            pickupComponent.platform = platform;
         }
 
         private GameObject GetPlatformPrefab()

@@ -1,4 +1,5 @@
 using Entities;
+using Platforms;
 using UnityEngine;
 
 namespace Pickups
@@ -8,6 +9,7 @@ namespace Pickups
         #region PUBLIC_VARS
 
         public string label;
+        public Platform platform;
             
         #endregion
 
@@ -27,12 +29,11 @@ namespace Pickups
             }
             
             // TODO:
-            // - Show tooltip / info: "Collected {label}"
-            // - Mark the pickup on the player
+            // - Mark the pickup on the player (for some)
             // - Maybe have an internal cooldown, if necessary which removes the pickup after some time (co-routine?)
-            // - Disable the pickup on the field (myself)
 
             _collected = true;
+            platform.CollectPickup(player);
             
             player.ShowTooltip($"Collected {label}");
             OnCollect(player);

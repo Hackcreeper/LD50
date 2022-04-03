@@ -1,4 +1,6 @@
+using System;
 using GameFlow;
+using Pickups;
 using Platforms;
 using TMPro;
 using Ui;
@@ -71,6 +73,17 @@ namespace Entities
             }
 
             platform.OnPlayerEnter(this);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            var pickup = collision.GetComponent<Pickup>();
+            if (!pickup)
+            {
+                return;
+            }
+
+            pickup.OnPlayerCollect(this);
         }
 
         private void Update()
