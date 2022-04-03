@@ -3112,19 +3112,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec57a283ac14127b3a22bb02ee8035a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePlatformPrefab: {fileID: 4653320455351390845, guid: 1b9244ba848424ab4bafbdc48de9524e,
-    type: 3}
-  platforms:
-  - prefab: {fileID: 2689698548708479279, guid: edd43a16cd0714c308af7ed004c54e41,
+  stages:
+  - name: Forest
+    minY: 0
+    basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
-    chance: 10
-  - prefab: {fileID: 3810054460898629737, guid: 51ca2aa574176449184b62b5ffe32366,
+    platforms:
+    - prefab: {fileID: 3319334070910145865, guid: edd43a16cd0714c308af7ed004c54e41,
+        type: 3}
+      chance: 10
+    - prefab: {fileID: 4073242484867163948, guid: 40456c8e2899644209c4a6a40d5ef934,
+        type: 3}
+      chance: 2
+    pickups:
+    - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
+        type: 3}
+      chance: 5
+  - name: Sky
+    minY: 305
+    basePlatformPrefab: {fileID: 5991907975563291777, guid: ef44c3099ca9d4652ae62f132039dca4,
       type: 3}
-    chance: 10
-  pickups:
-  - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
+    platforms: []
+    pickups:
+    - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
+        type: 3}
+      chance: 10
+  - name: Space
+    minY: 1050
+    basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
-    chance: 5
+    platforms: []
+    pickups: []
+  flowCamera: {fileID: 330585548}
   distanceCurve:
     serializedVersion: 2
     m_Curve:

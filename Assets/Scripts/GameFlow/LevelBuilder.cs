@@ -3,6 +3,7 @@ using System.Linq;
 using Pickups;
 using Platforms;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameFlow
@@ -10,10 +11,9 @@ namespace GameFlow
     public class LevelBuilder : MonoBehaviour
     {
         #region PUBLIC_VARS
-        
-        public GameObject basePlatformPrefab;
-        public PlatformData[] platforms;
-        public PickupData[] pickups;
+
+        public StageData[] stages;
+        public FlowCamera flowCamera;
         
         public AnimationCurve distanceCurve;
         public float difficultyMultiplier = 0.0001f;
@@ -33,7 +33,7 @@ namespace GameFlow
         
         private void Awake()
         {
-            _camera = Camera.main;
+            _camera = flowCamera.GetComponent<Camera>();
         }
 
         private void Update()
@@ -92,14 +92,28 @@ namespace GameFlow
 
         private GameObject GetPlatformPrefab()
         {
-            var possible = (from platform in platforms where Random.Range(0, 100) <= platform.chance select platform.prefab).ToList();
+            var possible = (from platform in GetCurrentStage().platforms where Random.Range(0, 100) <= platform.chance select platform.prefab).ToList();
 
-            return possible.Count ==  0 ? basePlatformPrefab : possible[Random.Range(0, possible.Count)];
+            return possible.Count ==  0 ? GetCurrentStage().basePlatformPrefab : possible[Random.Range(0, possible.Count)];
+        }
+
+        private StageData GetCurrentStage()
+        {
+            var current = stages[0];
+            foreach (var stage in stages)
+            {
+                if (flowCamera.transform.position.y >= stage.minY)
+                {
+                    current = stage;
+                }
+            }
+
+            return current;
         }
         
         private GameObject GetPickupPrefab()
         {
-            var possible = (from pickup in pickups where Random.Range(0, 100) <= pickup.chance select pickup.prefab).ToList();
+            var possible = (from pickup in GetCurrentStage().pickups where Random.Range(0, 100) <= pickup.chance select pickup.prefab).ToList();
 
             return possible.Count == 0 ? null : possible[Random.Range(0, possible.Count)];
         }
