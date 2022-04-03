@@ -1,6 +1,5 @@
 using GameFlow;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Ui
 {
