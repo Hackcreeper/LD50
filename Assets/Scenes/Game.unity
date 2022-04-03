@@ -2365,6 +2365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1179873146}
   flowCamera: {fileID: 330585548}
+  parallaxSpeed: 2
 --- !u!1 &1226455523
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using Entities;
 using Pickups;
 using UnityEngine;
@@ -22,6 +23,16 @@ namespace Platforms
             }
 
             pickup.transform.position = transform.position + new Vector3(0, .8f, 0);
+        }
+
+        private void OnDestroy()
+        {
+            if (!pickup)
+            {
+                return;
+            }
+            
+            Destroy(pickup.gameObject);
         }
 
         #endregion
