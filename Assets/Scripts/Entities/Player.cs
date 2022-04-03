@@ -140,8 +140,8 @@ namespace Entities
             LeanTween.cancel(tooltipGo);
 
             LeanTween.value(tooltipGo, color => { tooltipLabel.color = color; },
-                new Color(0, 0, 0, 0),
-                Color.black,
+                new Color(1, 1, 1, 0),
+                Color.white,
                 tooltipFadeInSpeed
             );
 
@@ -155,8 +155,8 @@ namespace Entities
             // Animate it to fade out after 3 seconds
 
             LeanTween.value(tooltipGo, color => { tooltipLabel.color = color; },
-                    Color.black,
-                    new Color(0, 0, 0, 0), tooltipFadeOutSpeed)
+                    Color.white,
+                    new Color(1, 1, 1, 0), tooltipFadeOutSpeed)
                 .setDelay(tooltipFadeInSpeed + tooltipFadeDelay)
                 .setOnComplete(() =>
                 {
