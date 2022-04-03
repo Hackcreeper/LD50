@@ -770,7 +770,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2581}
+  m_SizeDelta: {x: 0, y: 13488}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &165240127
 MonoBehaviour:
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 421614f4646ab464ebb588a83dd2188e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce744c4adb88e49c4a4f05b04892b46a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2473,7 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f025477726e45c3b68235fd86002d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: 3
+  parallaxSpeed: 5
   flowCamera: {fileID: 330585548}
 --- !u!1 &1004951914
 GameObject:
@@ -2835,7 +2835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f025477726e45c3b68235fd86002d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: 1
+  parallaxSpeed: 4
   flowCamera: {fileID: 330585548}
 --- !u!1 &1226455523
 GameObject:
@@ -3397,7 +3397,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dbdf0e68d43584df1b8584b856df8850,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dbdf0e68d43584df1b8584b856df8850,
         type: 3}
@@ -4653,7 +4653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f025477726e45c3b68235fd86002d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: 2
+  parallaxSpeed: 3
   flowCamera: {fileID: 330585548}
 --- !u!222 &1994462603
 CanvasRenderer:
