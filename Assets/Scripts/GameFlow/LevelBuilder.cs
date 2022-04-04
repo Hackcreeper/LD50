@@ -49,7 +49,7 @@ namespace GameFlow
             }
 
             var toRemove = new List<float>();
-            foreach (var (key, value) in from platformPair in _platforms let viewPort = _camera.WorldToViewportPoint(new Vector3(0, platformPair.Key, 0)) where viewPort.y < 0 select platformPair)
+            foreach (var (key, value) in from platformPair in _platforms let viewPort = _camera.WorldToViewportPoint(new Vector3(0, platformPair.Key, 0)) where viewPort.y < -1 select platformPair)
             {
                 toRemove.Add(key);
                 Destroy(value.gameObject);
