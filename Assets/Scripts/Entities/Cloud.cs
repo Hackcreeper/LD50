@@ -1,6 +1,4 @@
-using System;
 using GameFlow;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 namespace Entities
@@ -51,12 +49,21 @@ namespace Entities
         {
             var valueToMove = CalculatePositionY();
 
-            transform.localPosition = new Vector3(
-                transform.localPosition.x,
-                transform.localPosition.y - valueToMove
+            var trans = transform;
+            var localPosition = trans.localPosition;
+            trans.localPosition = new Vector3(
+                localPosition.x,
+                localPosition.y - valueToMove,
+                localPosition.z
             );
         }
 
+        #endregion
+        
+        #region PUBLIC_METHODS
+
+        public SpriteRenderer GetSprite() => _sprite;
+        
         #endregion
         
         #region PRIVATE_METHODS

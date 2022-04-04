@@ -22,6 +22,8 @@ namespace Effects
         public float maxDistance = 1.5f;
         public float minParallaxSpeed = 0.1f;
         public float maxParallaxSpeed = 0.4f;
+        public int minSorting = 1;
+        public int maxSorting = 5;
         
         #endregion
 
@@ -80,8 +82,10 @@ namespace Effects
             var scale = Random.Range(.1f, .3f);
             cloud.transform.localScale = Vector3.one * scale;
 
-            cloud.GetComponent<Cloud>().flowCamera = flowCamera;
-            cloud.GetComponent<Cloud>().parallaxSpeed = Random.Range(minParallaxSpeed, maxParallaxSpeed);
+            var cloudComp = cloud.GetComponent<Cloud>();
+            cloudComp.flowCamera = flowCamera;
+            cloudComp.parallaxSpeed = Random.Range(minParallaxSpeed, maxParallaxSpeed);
+            cloudComp.GetSprite().sortingOrder = Random.Range(minSorting, maxSorting);
             
             _clouds.Add(cloud.transform);
         }

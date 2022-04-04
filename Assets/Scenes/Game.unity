@@ -970,6 +970,8 @@ MonoBehaviour:
   maxDistance: 2.5
   minParallaxSpeed: 0.1
   maxParallaxSpeed: 0.4
+  minSorting: 7
+  maxSorting: 9
 --- !u!1 &218322611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,6 +3220,8 @@ MonoBehaviour:
   maxDistance: 2.5
   minParallaxSpeed: 0.1
   maxParallaxSpeed: 0.4
+  minSorting: 10
+  maxSorting: 12
 --- !u!1 &1239686287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,6 +3343,8 @@ MonoBehaviour:
   maxDistance: 2.5
   minParallaxSpeed: 0.1
   maxParallaxSpeed: 0.4
+  minSorting: 13
+  maxSorting: 15
 --- !u!1 &1241472268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3519,8 @@ MonoBehaviour:
   maxDistance: 2.5
   minParallaxSpeed: 0.1
   maxParallaxSpeed: 0.4
+  minSorting: 4
+  maxSorting: 6
 --- !u!1 &1272898886
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,6 +5306,8 @@ MonoBehaviour:
   maxDistance: 2.5
   minParallaxSpeed: 0.1
   maxParallaxSpeed: 0.4
+  minSorting: 1
+  maxSorting: 3
 --- !u!1 &2056965961
 GameObject:
   m_ObjectHideFlags: 0
