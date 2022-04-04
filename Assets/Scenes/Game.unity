@@ -3688,7 +3688,7 @@ MonoBehaviour:
   - name: Forest
     minY: 0
     speed: 1
-    basePlatformPrefab: {fileID: 3319334070910145865, guid: edd43a16cd0714c308af7ed004c54e41,
+    basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
     platforms:
     - prefab: {fileID: 3319334070910145865, guid: edd43a16cd0714c308af7ed004c54e41,
@@ -3697,6 +3697,9 @@ MonoBehaviour:
     - prefab: {fileID: 4073242484867163948, guid: 40456c8e2899644209c4a6a40d5ef934,
         type: 3}
       chance: 2
+    - prefab: {fileID: 4073242484867163948, guid: bc261fa26df0048088b726cc94175bc4,
+        type: 3}
+      chance: 11
     pickups:
     - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
         type: 3}

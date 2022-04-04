@@ -10,6 +10,7 @@ namespace States
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             Camera.main.GetComponent<FlowCamera>()?.player.StartJump();
+            animator.SetBool("landing", false);
             animator.SetBool(JumpingAction, false);
         }
     }

@@ -43,6 +43,11 @@ namespace Platforms
             OnEnter(player);
         }
 
+        public void OnPlayerLeave(Player player)
+        {
+            OnLeave(player);
+        }
+
         public void CollectPickup(Player player)
         {
             if (!pickup)
@@ -62,6 +67,8 @@ namespace Platforms
         {
             player.Jump(player.jumpForce);
         }
+        
+        protected virtual void OnLeave(Player player) {}
 
         #endregion
     }

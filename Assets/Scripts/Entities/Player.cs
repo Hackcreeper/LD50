@@ -50,6 +50,7 @@ namespace Entities
         private int _minScore;
         private bool _scoreVisible;
         private float _lastJumpForce;
+        private Platform _lastPlatform;
 
         private static readonly int JumpingAction = Animator.StringToHash("jumping");
         private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
@@ -70,8 +71,12 @@ namespace Entities
         {
             if (_forceCooldown > 0f || !_grounded || !_started || _dead || _rigidbody2D.velocity.y > 0.1f)
             {
+                Debug.Log("Grounded: " + _grounded);
+                Debug.Log("Rigid V: " + _rigidbody2D.velocity.y);
                 return;
             }
+            
+            Debug.Log("2");
 
             var platform = collision.gameObject.GetComponent<Platform>();
             if (!platform)
@@ -82,6 +87,7 @@ namespace Entities
 
             animator.SetBool(LandingAction, true);
             platform.OnPlayerEnter(this);
+            _lastPlatform = platform;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -196,6 +202,12 @@ namespace Entities
         {
             _rigidbody2D.AddForce(new Vector2(0, _lastJumpForce), ForceMode2D.Impulse);
             _lastJumpForce = 0f;
+
+            if (_lastPlatform)
+            {
+                _lastPlatform.OnPlayerLeave(this);
+                _lastPlatform = null;
+            }
         }
 
         public void FinishedStandingUp()
