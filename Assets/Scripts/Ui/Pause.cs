@@ -25,6 +25,7 @@ namespace Ui
         
         private Image _image;
         private bool _paused;
+        private float _originalSpeed;
         
         #endregion
         
@@ -50,6 +51,7 @@ namespace Ui
 
         public void PauseGame()
         {
+            _originalSpeed = Time.timeScale;
             Time.timeScale = 0f;
             _paused = true;
             
@@ -119,7 +121,7 @@ namespace Ui
                 .setEaseInOutQuint()
                 .setOnComplete(() =>
                 {
-                    Time.timeScale = 1f;
+                    Time.timeScale = _originalSpeed;
                     _paused = false;
                     
                     LeanTween.scale(scoreLabel.gameObject, Vector3.one, scoreScaleTime)

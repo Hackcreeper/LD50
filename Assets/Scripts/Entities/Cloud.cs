@@ -1,14 +1,18 @@
+using System;
 using GameFlow;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 namespace Entities
 {
+    [RequireComponent((typeof(SpriteRenderer)))]
     public class Cloud : MonoBehaviour
     {
         #region PUBLIC_VARS
         
         public float parallaxSpeed = 2f;
         public FlowCamera flowCamera;
+        public CloudColor[] colors;
         
         #endregion
         
@@ -16,15 +20,31 @@ namespace Entities
         
         private float _cameraStartY;
         private float _lastFrame;
+        private SpriteRenderer _sprite;
         
         #endregion
         
         #region UNITY_METHODS
 
+        private void Awake()
+        {
+            _sprite = GetComponent<SpriteRenderer>();
+        }
+
         private void Start()
         {
             _cameraStartY = flowCamera.transform.position.y;
             _lastFrame = 0;
+
+            foreach (var color in colors)
+            {
+                if (color.minSpeed > parallaxSpeed)
+                {
+                    break;
+                }
+
+                _sprite.color = color.color;
+            }
         }
 
         private void Update()

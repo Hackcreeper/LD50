@@ -66,6 +66,7 @@ namespace GameFlow
                 .setOnComplete(() =>
                 {
                     LeanTween.scale(stageLabel.rectTransform, Vector3.zero, 0.5f).setDelay(2f);
+                    Time.timeScale = _lastStage.speed;
                 });
         }
         

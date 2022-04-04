@@ -893,7 +893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParent: {fileID: 189635761}
   flowCamera: {fileID: 330585548}
   cloudPrefabs:
   - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}
@@ -3142,7 +3141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParent: {fileID: 1235710688}
   flowCamera: {fileID: 330585548}
   cloudPrefabs:
   - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}
@@ -3264,7 +3262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParent: {fileID: 1239686288}
   flowCamera: {fileID: 330585548}
   cloudPrefabs:
   - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}
@@ -3439,7 +3436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParent: {fileID: 1248631175}
   flowCamera: {fileID: 330585548}
   cloudPrefabs:
   - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}
@@ -3661,7 +3657,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1321848075}
   - component: {fileID: 1321848074}
-  - component: {fileID: 1321848076}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -3684,6 +3679,7 @@ MonoBehaviour:
   stages:
   - name: Forest
     minY: 0
+    speed: 1
     basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
     platforms:
@@ -3699,15 +3695,23 @@ MonoBehaviour:
       chance: 5
   - name: Sky
     minY: 305
+    speed: 1.3
     basePlatformPrefab: {fileID: 5991907975563291777, guid: ef44c3099ca9d4652ae62f132039dca4,
       type: 3}
-    platforms: []
+    platforms:
+    - prefab: {fileID: 5930285123913542820, guid: e56e7f4e586b24ecf8ca11bfe5ebfb58,
+        type: 3}
+      chance: 10
+    - prefab: {fileID: 5930285123913542820, guid: a9dc4fbd8d15048c2a8a1e85f6f910b8,
+        type: 3}
+      chance: 8
     pickups:
     - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
         type: 3}
       chance: 10
   - name: Space
     minY: 1050
+    speed: 2
     basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
     platforms: []
@@ -3763,35 +3767,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1321848076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321848073}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cloudParent: {fileID: 2026778643}
-  flowCamera: {fileID: 330585548}
-  cloudPrefabs:
-  - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}
-  amountCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  minY: 0
-  maxY: 300
-  distanceToCamera: 2
-  minDistance: 0
-  maxDistance: 1.5
-  minParallaxSpeed: 0.1
-  maxParallaxSpeed: 0.4
 --- !u!1 &1363363404
 GameObject:
   m_ObjectHideFlags: 0
@@ -5246,7 +5221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223752950714fa292d0b91caea0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParent: {fileID: 2026778643}
   flowCamera: {fileID: 330585548}
   cloudPrefabs:
   - {fileID: 8552643506895618754, guid: f5e9017feb24840069e7fcb1eebf81f3, type: 3}

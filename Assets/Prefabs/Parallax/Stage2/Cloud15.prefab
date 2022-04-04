@@ -99,3 +99,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxSpeed: 0.2
   flowCamera: {fileID: 0}
+  colors:
+  - minSpeed: 0
+    color: {r: 0.5411765, g: 0.70980394, b: 0.88235295, a: 1}
+  - minSpeed: 0.1
+    color: {r: 0.6392157, g: 0.8, b: 0.93333334, a: 1}
+  - minSpeed: 0.2
+    color: {r: 0.7372549, g: 0.8627451, b: 0.9607843, a: 1}
+  - minSpeed: 0.3
+    color: {r: 0.83137256, g: 0.8980392, b: 0.96862745, a: 1}

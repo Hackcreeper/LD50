@@ -8,6 +8,7 @@ namespace GameFlow
     {
         public string name;
         public float minY;
+        public float speed;
 
         public GameObject basePlatformPrefab;
         public PlatformData[] platforms;
