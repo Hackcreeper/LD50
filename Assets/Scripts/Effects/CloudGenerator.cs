@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Entities;
 using GameFlow;
-using Ui;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +11,6 @@ namespace Effects
     {
         #region PUBLIC_VARS
 
-        public Transform cloudParent;
         public FlowCamera flowCamera;
         public GameObject[] cloudPrefabs;
 
@@ -61,7 +59,7 @@ namespace Effects
             }
 
             var toRemove = new List<Transform>();
-            foreach (var cloud in _clouds.Where(cloud => cloud.localPosition.y < -(cloudParent.transform.localPosition.y + 9f)))
+            foreach (var cloud in _clouds.Where(cloud => cloud.localPosition.y < -(transform.localPosition.y + 9f)))
             {
                 toRemove.Add(cloud);
                 Destroy(cloud.gameObject);
@@ -72,7 +70,7 @@ namespace Effects
         
         private void SpawnCloud(float y)
         {
-            var cloud = Instantiate(GetCloudPrefab(), cloudParent);
+            var cloud = Instantiate(GetCloudPrefab(), transform);
 
             cloud.transform.localPosition = new Vector3(
                 Random.Range(-6f, 6f),
