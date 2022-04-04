@@ -176,6 +176,7 @@ namespace Entities
         public void StartJump()
         {
             _rigidbody2D.AddForce(new Vector2(0, _lastJumpForce), ForceMode2D.Impulse);
+            _lastJumpForce = 0f;
         }
 
         public void FinishedStandingUp()

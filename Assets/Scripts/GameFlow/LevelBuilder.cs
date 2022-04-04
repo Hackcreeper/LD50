@@ -25,6 +25,7 @@ namespace GameFlow
         private Camera _camera;
         private float _lastY = -2;
         private int _steps;
+        private StageData _lastStage;
         
         #endregion
 
@@ -37,30 +38,50 @@ namespace GameFlow
 
         private void Update()
         {
+            HandleStageChange();
+            HandlePlatforms();
+        }
+        
+        #endregion
+        
+        #region PRIVATE_METHODS
+
+        private void HandleStageChange()
+        {
+            if (_lastStage.name == GetCurrentStage().name)
+            {
+                return;
+            }
+            
+            Debug.Log("New stage: " + GetCurrentStage().name);
+            _lastStage = GetCurrentStage();
+        }
+        
+        private void HandlePlatforms()
+        {
             var toCreate = 10 - _platforms.Count;
             for (var i = 0; i < toCreate; i++)
             {
                 var distance = distanceCurve.Evaluate(_steps * difficultyMultiplier) * 10f;
-                
+
                 SpawnPlatform(_lastY + distance);
                 _lastY += distance;
                 _steps++;
             }
 
             var toRemove = new List<float>();
-            foreach (var (key, value) in from platformPair in _platforms let viewPort = _camera.WorldToViewportPoint(new Vector3(0, platformPair.Key, 0)) where viewPort.y < -1 select platformPair)
+            foreach (var (key, value) in from platformPair in _platforms
+                     let viewPort = _camera.WorldToViewportPoint(new Vector3(0, platformPair.Key, 0))
+                     where viewPort.y < -1
+                     select platformPair)
             {
                 toRemove.Add(key);
                 Destroy(value.gameObject);
             }
-            
+
             toRemove.ForEach(y => _platforms.Remove(y));
         }
 
-        #endregion
-        
-        #region PRIVATE_METHODS
-        
         private void SpawnPlatform(float y)
         {
             var platform = Instantiate(GetPlatformPrefab(), transform);
