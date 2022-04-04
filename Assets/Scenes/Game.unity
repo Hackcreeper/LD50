@@ -4106,10 +4106,13 @@ MonoBehaviour:
       chance: 10
   - name: Space
     minY: 1050
-    speed: 1.7
-    basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
+    speed: 1.55
+    basePlatformPrefab: {fileID: 6842996742048473363, guid: 247d0cbc0036844949f654185fa7da85,
       type: 3}
-    platforms: []
+    platforms:
+    - prefab: {fileID: 6842996742048473363, guid: 247d0cbc0036844949f654185fa7da85,
+        type: 3}
+      chance: 6
     pickups: []
   flowCamera: {fileID: 330585548}
   distanceCurve:
