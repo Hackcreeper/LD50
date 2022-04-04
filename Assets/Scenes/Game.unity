@@ -2611,7 +2611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856578384}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710707, w: 0.7071066}
-  m_LocalPosition: {x: -5, y: 2.84, z: 5.1}
+  m_LocalPosition: {x: -5.5, y: 2.84, z: 5.1}
   m_LocalScale: {x: 26.6568, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3721,7 +3721,7 @@ MonoBehaviour:
   - name: Sky
     minY: 305
     speed: 1.3
-    basePlatformPrefab: {fileID: 5930285123913542820, guid: 33f21ddee458e40c0a8ed7969fa43984,
+    basePlatformPrefab: {fileID: 5991907975563291777, guid: ef44c3099ca9d4652ae62f132039dca4,
       type: 3}
     platforms:
     - prefab: {fileID: 5930285123913542820, guid: e56e7f4e586b24ecf8ca11bfe5ebfb58,
@@ -3730,6 +3730,9 @@ MonoBehaviour:
     - prefab: {fileID: 5930285123913542820, guid: a9dc4fbd8d15048c2a8a1e85f6f910b8,
         type: 3}
       chance: 8
+    - prefab: {fileID: 5930285123913542820, guid: 33f21ddee458e40c0a8ed7969fa43984,
+        type: 3}
+      chance: 16
     pickups:
     - prefab: {fileID: 8773664739405080663, guid: 9f315afdde3394ddca4e4e53b018ecad,
         type: 3}
@@ -4972,7 +4975,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960594028}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710707, w: 0.7071066}
-  m_LocalPosition: {x: 5, y: 2.84, z: 5.1}
+  m_LocalPosition: {x: 5.5, y: 2.84, z: 5.1}
   m_LocalScale: {x: 26.6568, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
