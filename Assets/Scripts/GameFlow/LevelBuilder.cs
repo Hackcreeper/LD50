@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pickups;
 using Platforms;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,8 @@ namespace GameFlow
         
         public AnimationCurve distanceCurve;
         public float difficultyMultiplier = 0.0001f;
+
+        public TextMeshProUGUI stageLabel;
         
         #endregion
         
@@ -34,6 +37,7 @@ namespace GameFlow
         private void Awake()
         {
             _camera = flowCamera.GetComponent<Camera>();
+            _lastStage = stages[0];
         }
 
         private void Update()
@@ -53,8 +57,16 @@ namespace GameFlow
                 return;
             }
             
-            Debug.Log("New stage: " + GetCurrentStage().name);
             _lastStage = GetCurrentStage();
+
+            stageLabel.text = $"{_lastStage.name}\nStage";
+            LeanTween.scale(stageLabel.rectTransform, Vector3.one, 0.5f)
+                .setOvershoot(1.3f)
+                .setEaseSpring()
+                .setOnComplete(() =>
+                {
+                    LeanTween.scale(stageLabel.rectTransform, Vector3.zero, 0.5f).setDelay(2f);
+                });
         }
         
         private void HandlePlatforms()

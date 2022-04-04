@@ -343,6 +343,20 @@ namespace Entities
             Pause.Instance.PauseGame();
         }
 
+        public void OnCheat2(InputAction.CallbackContext context)
+        {
+            if (!context.started || !Application.isEditor)
+            {
+                return;
+            }
+
+            transform.position = new Vector3(
+                transform.position.x,
+                310,
+                transform.position.z
+            );
+        }
+        
         #endregion
     }
 }
