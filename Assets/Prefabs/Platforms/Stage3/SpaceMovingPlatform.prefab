@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 0}
-  speed: 3.5
+  speed: 2.5
 --- !u!4 &6842996742048473367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2266077515052218520, guid: f2e7b7742c76c482f8f7e527ae1a9b12,

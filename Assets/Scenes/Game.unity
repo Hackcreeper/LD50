@@ -4107,12 +4107,18 @@ MonoBehaviour:
   - name: Space
     minY: 1050
     speed: 1.55
-    basePlatformPrefab: {fileID: 6842996742048473363, guid: 247d0cbc0036844949f654185fa7da85,
+    basePlatformPrefab: {fileID: 2266077515052218524, guid: f2e7b7742c76c482f8f7e527ae1a9b12,
       type: 3}
     platforms:
     - prefab: {fileID: 6842996742048473363, guid: 247d0cbc0036844949f654185fa7da85,
         type: 3}
       chance: 6
+    - prefab: {fileID: 6842996742048473363, guid: 8db596c30574e40d196411135f24cc98,
+        type: 3}
+      chance: 12
+    - prefab: {fileID: 6842996742048473363, guid: 29eb055818e63421a94aecfe5887f84a,
+        type: 3}
+      chance: 20
     pickups: []
   flowCamera: {fileID: 330585548}
   distanceCurve:
