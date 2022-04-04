@@ -102,7 +102,11 @@ namespace Entities
             }
 
             _forceCooldown -= Time.deltaTime;
-            _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
+
+            if (_lastJumpForce < 0.001f)
+            {
+                _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
+            }
 
             UpdateAnimatorVelocity();
             UpdateScoreLabel();
