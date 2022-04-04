@@ -74,6 +74,8 @@ namespace Ui
 
         private void ShowGameOver()
         {
+            gameObject.SetActive(true);
+            
             LeanTween.value(gameObject, value =>
             {
                 _image.color = new Color(

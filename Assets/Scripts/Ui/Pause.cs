@@ -1,3 +1,4 @@
+using System;
 using Entities;
 using TMPro;
 using UnityEngine;
@@ -37,6 +38,11 @@ namespace Ui
             _image = GetComponent<Image>();
         }
 
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
         private void OnApplicationFocus(bool hasFocus)
         {
             if (!hasFocus)
@@ -51,6 +57,8 @@ namespace Ui
 
         public void PauseGame()
         {
+            gameObject.SetActive(true);
+            
             _originalSpeed = Time.timeScale;
             Time.timeScale = 0f;
             _paused = true;
@@ -69,6 +77,7 @@ namespace Ui
         public void ContinueGame()
         {
             HidePause();
+            gameObject.SetActive(false);
         }
 
         public bool IsPaused() => _paused;

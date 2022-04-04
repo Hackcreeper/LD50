@@ -107,6 +107,10 @@ namespace Entities
             {
                 _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
             }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+            }
 
             UpdateAnimatorVelocity();
             UpdateScoreLabel();
