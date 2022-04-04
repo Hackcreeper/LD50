@@ -384,13 +384,31 @@ namespace Entities
                 return;
             }
 
-            transform.position = new Vector3(
-                transform.position.x,
+            var trans = transform;
+            var transPosition = trans.position;
+            trans.position = new Vector3(
+                transPosition.x,
                 310,
-                transform.position.z
+                transPosition.z
             );
         }
-        
+
+        public void OnCheat3(InputAction.CallbackContext context)
+        {
+            if (!context.started || !Application.isEditor)
+            {
+                return;
+            }
+
+            var trans = transform;
+            var transPosition = trans.position;
+            trans.position = new Vector3(
+                transPosition.x,
+                1055,
+                transPosition.z
+            );
+        }
+
         #endregion
     }
 }

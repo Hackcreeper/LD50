@@ -3739,7 +3739,7 @@ MonoBehaviour:
       chance: 10
   - name: Space
     minY: 1050
-    speed: 2
+    speed: 1.7
     basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
       type: 3}
     platforms: []
@@ -3749,26 +3749,35 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.044921875
-      value: 0.43634033
-      inSlope: 0.32984954
-      outSlope: 0.32984954
+      time: -0.043832444
+      value: 0.40703925
+      inSlope: -0.018739184
+      outSlope: -0.018739184
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.04000014
+      outWeight: 0.3055016
     - serializedVersion: 3
-      time: 0.42426714
-      value: 0.5469325
-      inSlope: 0.56045043
-      outSlope: 0.56045043
+      time: 0.1726069
+      value: 0.43827462
+      inSlope: 0.12306856
+      outSlope: 0.12306856
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0031128
-      value: 0.83358765
+      time: 0.55782676
+      value: 0.46935636
+      inSlope: 0.066777356
+      outSlope: 0.066777356
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14816454
+    - serializedVersion: 3
+      time: 0.9998779
+      value: 0.50011826
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3778,7 +3787,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  difficultyMultiplier: 0.001
+  difficultyMultiplier: 0.005
   stageLabel: {fileID: 1966520686}
 --- !u!4 &1321848075
 Transform:
@@ -4944,6 +4953,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c5df0654-7a84-490d-8b4f-f2a17e2177d4
     m_ActionName: Player/Cheat2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1767456969}
+        m_TargetAssemblyTypeName: Entities.Player, Assembly-CSharp
+        m_MethodName: OnCheat3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9c42c7a1-dcba-4152-a04f-56deb0788bed
+    m_ActionName: Player/Cheat3[/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
