@@ -55,7 +55,6 @@ namespace Entities
         private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
         private static readonly int LandingAction = Animator.StringToHash("landing");
         private static readonly int StartingAction = Animator.StringToHash("starting");
-        private static readonly int RotatedAction = Animator.StringToHash("rotated");
 
         #endregion
 
@@ -179,17 +178,10 @@ namespace Entities
             _rigidbody2D.AddForce(new Vector2(0, _lastJumpForce), ForceMode2D.Impulse);
         }
 
-        public void StartRotating()
+        public void FinishedStandingUp()
         {
-            LeanTween.rotate(model.gameObject, new Vector3(0, 0, 0), 0.5f).setDelay(.5f);
-            LeanTween.moveLocal(model.gameObject, new Vector3(-.22f, .1f, 0), .5f).setDelay(0.5f)
-                .setOnComplete(() =>
-                {
-                    animator.SetBool(RotatedAction, true);
-                    
-                    Jump(jumpForce);
-                    _started = true;
-                });
+            Jump(jumpForce);
+            _started = true;
         }
         
         #endregion
