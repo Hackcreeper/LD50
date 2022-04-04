@@ -206,6 +206,11 @@ namespace Entities
             }
 
             _dead = true;
+            if (Pause.Instance.IsPaused())
+            {
+                Pause.Instance.ContinueGame();
+            }
+            
             gameOver.OnPlayerDeath();
         }
 
@@ -337,7 +342,7 @@ namespace Entities
 
         public void OnPause(InputAction.CallbackContext context)
         {
-            if (!context.started)
+            if (!context.started || _dead)
             {
                 return;
             }
