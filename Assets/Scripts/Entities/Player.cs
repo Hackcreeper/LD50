@@ -49,8 +49,11 @@ namespace Entities
         private bool _introStarted;
         private int _minScore;
         private bool _scoreVisible;
+        private float _lastJumpForce;
 
         private static readonly int JumpingAction = Animator.StringToHash("jumping");
+        private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
+        private static readonly int LandingAction = Animator.StringToHash("landing");
 
         #endregion
 
@@ -75,6 +78,7 @@ namespace Entities
                 return;
             }
 
+            animator.SetBool(LandingAction, true);
             platform.OnPlayerEnter(this);
         }
 
@@ -99,12 +103,13 @@ namespace Entities
             _forceCooldown -= Time.deltaTime;
             _rigidbody2D.velocity = new Vector2(_xVelocity * moveSpeed, _rigidbody2D.velocity.y);
 
+            UpdateAnimatorVelocity();
             UpdateScoreLabel();
             UpdateModelScale();
             CheckForGrounded();
             CheckForDead();
         }
-
+        
         #endregion
 
         #region PUBLIC_METHODS
@@ -124,10 +129,9 @@ namespace Entities
         public void Jump(float force)
         {
             animator.SetBool(JumpingAction, true);
-            LeanTween.delayedCall(animator.gameObject, 0.5f, () => animator.SetBool(JumpingAction, false));
 
-            _rigidbody2D.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
-            _forceCooldown = 0.8f;
+            _lastJumpForce = force;
+            _forceCooldown = 1.4f;
         }
 
         public void AddBonusScore(int amount)
@@ -157,8 +161,6 @@ namespace Entities
                         .setDelay(tooltipFadeDelay);
                 });
 
-            // Animate it to fade out after 3 seconds
-
             LeanTween.value(tooltipGo, color => { tooltipLabel.color = color; },
                     Color.white,
                     new Color(1, 1, 1, 0), tooltipFadeOutSpeed)
@@ -168,6 +170,11 @@ namespace Entities
                     tooltipGo.SetActive(false);
                     tooltipLabel.transform.localPosition = new Vector3(0, 1f, 0f);
                 });
+        }
+        
+        public void StartJump()
+        {
+            _rigidbody2D.AddForce(new Vector2(0, _lastJumpForce), ForceMode2D.Impulse);
         }
 
         #endregion
@@ -261,6 +268,11 @@ namespace Entities
 
             LeanTween.moveY(scoreLabel.rectTransform, -48, 0.35f);
             _scoreVisible = true;
+        }
+
+        private void UpdateAnimatorVelocity()
+        {
+            animator.SetFloat(YVelocityAction, _rigidbody2D.velocity.y);
         }
 
         #endregion

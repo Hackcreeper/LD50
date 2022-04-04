@@ -1,13 +1,17 @@
+using GameFlow;
 using UnityEngine;
 
 namespace States
 {
     public class JumpBehaviour : StateMachineBehaviour
     {
-        // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+        private static readonly int JumpingAction = Animator.StringToHash("jumping");
+
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("BRUH!!");
+            // Allow the player to really jump
+            Camera.main.GetComponent<FlowCamera>()?.player.StartJump();
+            animator.SetBool(JumpingAction, false);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
