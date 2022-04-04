@@ -3688,7 +3688,7 @@ MonoBehaviour:
   - name: Forest
     minY: 0
     speed: 1
-    basePlatformPrefab: {fileID: 2485134467984795729, guid: 266cf9d3580ff4961a2bcd49d39fcbae,
+    basePlatformPrefab: {fileID: 3319334070910145865, guid: edd43a16cd0714c308af7ed004c54e41,
       type: 3}
     platforms:
     - prefab: {fileID: 3319334070910145865, guid: edd43a16cd0714c308af7ed004c54e41,

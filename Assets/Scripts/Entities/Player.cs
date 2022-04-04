@@ -55,6 +55,7 @@ namespace Entities
         private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
         private static readonly int LandingAction = Animator.StringToHash("landing");
         private static readonly int StartingAction = Animator.StringToHash("starting");
+        private static readonly int ForceJumpAction = Animator.StringToHash("forceJump");
 
         #endregion
 
@@ -141,6 +142,16 @@ namespace Entities
 
             _lastJumpForce = force;
             _forceCooldown = 1.4f;
+        }
+        
+        public void ForceJump(float force)
+        {
+            animator.SetBool(ForceJumpAction, true);
+
+            _lastJumpForce = force;
+            _forceCooldown = 1.4f;
+            
+            StartJump();
         }
 
         public void AddBonusScore(int amount)
@@ -322,7 +333,7 @@ namespace Entities
                 if (Application.isEditor)
                 {
                     ShowTooltip("You sneaky cheater!");
-                    Jump(jumpForce * 5);
+                    ForceJump(jumpForce * 5);
                 }
 
                 return;
