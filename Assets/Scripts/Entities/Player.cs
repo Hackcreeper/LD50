@@ -71,13 +71,9 @@ namespace Entities
         {
             if (_forceCooldown > 0f || !_grounded || !_started || _dead || _rigidbody2D.velocity.y > 0.1f)
             {
-                Debug.Log("Grounded: " + _grounded);
-                Debug.Log("Rigid V: " + _rigidbody2D.velocity.y);
                 return;
             }
             
-            Debug.Log("2");
-
             var platform = collision.gameObject.GetComponent<Platform>();
             if (!platform)
             {
@@ -215,6 +211,8 @@ namespace Entities
             Jump(jumpForce);
             _started = true;
         }
+
+        public bool IsGrounded() => _grounded;
         
         #endregion
 
