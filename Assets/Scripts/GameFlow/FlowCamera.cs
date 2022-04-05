@@ -62,6 +62,7 @@ namespace GameFlow
         {
             LeanTween.cancel(intro.logo.rectTransform);
             LeanTween.cancel(intro.creditsLabel.rectTransform);
+            LeanTween.cancel(intro.startLabel.rectTransform);
 
             LeanTween.value(intro.logo.gameObject, value =>
             {
@@ -71,6 +72,11 @@ namespace GameFlow
             LeanTween.value(intro.creditsLabel.gameObject, value =>
             {
                 intro.creditsLabel.color = value;
+            }, Color.white, new Color(1, 1, 1, 0), introAnimationTime);
+            
+            LeanTween.value(intro.startLabel.gameObject, value =>
+            {
+                intro.startLabel.color = value;
             }, Color.white, new Color(1, 1, 1, 0), introAnimationTime);
             
             background.OnStart();

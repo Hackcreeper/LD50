@@ -10,6 +10,7 @@ namespace Ui
         
         public Image logo;
         public TextMeshProUGUI creditsLabel;
+        public TextMeshProUGUI startLabel;
 
         #endregion
         
