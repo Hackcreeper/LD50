@@ -32,6 +32,7 @@ namespace Entities
         public float tooltipFadeDelay = 2f;
 
         public Transform model;
+        public Transform jetpackModel;
         public Animator animator;
 
         #endregion
@@ -51,12 +52,14 @@ namespace Entities
         private bool _scoreVisible;
         private float _lastJumpForce;
         private Platform _lastPlatform;
+        private bool _jetpackEnabled;
 
         private static readonly int JumpingAction = Animator.StringToHash("jumping");
         private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
         private static readonly int LandingAction = Animator.StringToHash("landing");
         private static readonly int StartingAction = Animator.StringToHash("starting");
         private static readonly int ForceJumpAction = Animator.StringToHash("forceJump");
+        private static readonly int JetpackAction = Animator.StringToHash("jetpack");
 
         #endregion
 
@@ -84,6 +87,11 @@ namespace Entities
             animator.SetBool(LandingAction, true);
             platform.OnPlayerEnter(this);
             _lastPlatform = platform;
+
+            if (_jetpackEnabled)
+            {
+                DisableJetpack();
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -213,6 +221,17 @@ namespace Entities
         }
 
         public bool IsGrounded() => _grounded;
+
+        public void EnableJetpack()
+        {
+            _jetpackEnabled = true;
+            jetpackModel.gameObject.SetActive(true);
+            animator.SetBool(JetpackAction, true);
+            
+            ForceJump(jumpForce * 2.8f);
+        }
+
+        public bool IsJetpackEnabled() => _jetpackEnabled;
         
         #endregion
 
@@ -278,19 +297,37 @@ namespace Entities
             var modelLocalScale = model.localScale;
             var modelLocalPosition = model.localPosition;
 
+            var jetpackLocalScale = jetpackModel.localScale;
+            var jetpackLocalPosition = jetpackModel.localPosition;
+
             var xScale = Mathf.Abs(modelLocalScale.x);
             var xPos = Mathf.Abs(modelLocalPosition.x);
+
+            var xScaleJetpack = Mathf.Abs(jetpackLocalScale.x);
+            var xPosJetpack = Mathf.Abs(jetpackLocalPosition.x);
 
             model.localScale = new Vector3(
                 _xVelocity > 0 ? -xScale : xScale,
                 modelLocalScale.y,
                 modelLocalScale.z
             );
-
+            
             model.localPosition = new Vector3(
                 _xVelocity > 0 ? xPos : -xPos,
                 modelLocalPosition.y,
                 modelLocalPosition.z
+            );
+            
+            jetpackModel.localScale = new Vector3(
+                _xVelocity > 0 ? -xScaleJetpack : xScaleJetpack,
+                jetpackLocalScale.y,
+                jetpackLocalScale.z
+            );
+            
+            jetpackModel.localPosition = new Vector3(
+                _xVelocity > 0 ? xPosJetpack : -xPosJetpack,
+                jetpackLocalPosition.y,
+                jetpackLocalPosition.z
             );
         }
 
@@ -315,8 +352,20 @@ namespace Entities
         private void UpdateAnimatorVelocity()
         {
             animator.SetFloat(YVelocityAction, _rigidbody2D.velocity.y);
+
+            if (_rigidbody2D.velocity.y < 6 && _jetpackEnabled)
+            {
+                DisableJetpack();
+            }
         }
 
+        private void DisableJetpack()
+        {
+            _jetpackEnabled = false;
+            jetpackModel.gameObject.SetActive(false);
+            animator.SetBool(JetpackAction, false);
+        }
+        
         #endregion
 
         #region INPUT_MOVEMENTS

@@ -60,12 +60,12 @@ namespace GameFlow
 
         public void OnStart(Action callback)
         {
-            LeanTween.cancel(intro.gameNameLabel.rectTransform);
+            LeanTween.cancel(intro.logo.rectTransform);
             LeanTween.cancel(intro.creditsLabel.rectTransform);
 
-            LeanTween.value(intro.gameNameLabel.gameObject, value =>
+            LeanTween.value(intro.logo.gameObject, value =>
             {
-                intro.gameNameLabel.color = value;
+                intro.logo.color = value;
             }, Color.white, new Color(1, 1, 1, 0), introAnimationTime);
             
             LeanTween.value(intro.creditsLabel.gameObject, value =>

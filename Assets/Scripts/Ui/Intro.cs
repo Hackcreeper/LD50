@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Ui
 {
@@ -7,7 +8,7 @@ namespace Ui
     {
         #region PUBLIC_VARS
         
-        public TextMeshProUGUI gameNameLabel;
+        public Image logo;
         public TextMeshProUGUI creditsLabel;
 
         #endregion
@@ -16,7 +17,7 @@ namespace Ui
 
         private void Start()
         {
-            LeanTween.scale(gameNameLabel.rectTransform, Vector3.one * 1.05f, 1.5f)
+            LeanTween.scale(logo.rectTransform, Vector3.one * 1.05f, 1.5f)
                 .setLoopType(LeanTweenType.pingPong);
         }
         
