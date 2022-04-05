@@ -184,4 +184,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: +100 points
   platform: {fileID: 0}
+  collectSounds:
+  - {fileID: 8300000, guid: 613cc1e69c78f4859ba2671e8b2bf36a, type: 3}
+  - {fileID: 8300000, guid: 8950a38cefe3a4df59cda32b5d92814a, type: 3}
+  - {fileID: 8300000, guid: 320599bf6965e4d0c8153ceeef85d650, type: 3}
+  - {fileID: 8300000, guid: eb83602d8aca0410d9e8a95ba989c648, type: 3}
+  - {fileID: 8300000, guid: ab993aa391d6e48cea75e016ef030ce1, type: 3}
   bonusScore: 100

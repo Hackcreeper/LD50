@@ -178,6 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 0}
+  walkSounds:
+  - {fileID: 8300000, guid: 4fc85011d26ba47b9b85f4ed38dfec98, type: 3}
+  - {fileID: 8300000, guid: 47516818efd224794927821d8036df02, type: 3}
   speed: 2.5
 --- !u!4 &6842996742048473367 stripped
 Transform:

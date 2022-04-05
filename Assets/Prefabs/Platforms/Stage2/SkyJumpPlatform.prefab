@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 0}
+  walkSounds:
+  - {fileID: 8300000, guid: a6d7eec1712454b0b9964d8d50609604, type: 3}
+  - {fileID: 8300000, guid: ee1e4ff5497e4455e9ee6e53113a81c5, type: 3}
+  - {fileID: 8300000, guid: 433fe3eae36914d1cbe71ce5214db42a, type: 3}
   jumpForce: 20
   animator: {fileID: 876254045222980246}
 --- !u!1001 &1280818850462654085

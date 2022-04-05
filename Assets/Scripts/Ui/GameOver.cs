@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 namespace Ui
 {
+    [RequireComponent(typeof(AudioSource))]
     public class GameOver : MonoBehaviour
     {
         #region PUBLIC_VARS
@@ -22,6 +23,7 @@ namespace Ui
         public TMP_InputField nameInput;
         public Button submitScoreButton;
         public Button playAgainButton;
+        public AudioClip[] gameOverSounds;
 
         #endregion
 
@@ -75,6 +77,9 @@ namespace Ui
         private void ShowGameOver()
         {
             gameObject.SetActive(true);
+            
+            GetComponent<AudioSource>().clip = gameOverSounds[Random.Range(0, gameOverSounds.Length)];
+            GetComponent<AudioSource>().Play();
             
             LeanTween.value(gameObject, value =>
             {

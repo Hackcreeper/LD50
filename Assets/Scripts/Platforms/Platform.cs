@@ -9,6 +9,7 @@ namespace Platforms
         #region PUBLIC_VARS
 
         public Pickup pickup;
+        public AudioClip[] walkSounds;
 
         #endregion
 

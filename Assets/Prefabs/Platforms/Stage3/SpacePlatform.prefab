@@ -91,6 +91,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4fc85011d26ba47b9b85f4ed38dfec98, type: 3}
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 47516818efd224794927821d8036df02, type: 3}
     - target: {fileID: 4653320455351390841, guid: 1b9244ba848424ab4bafbdc48de9524e,
         type: 3}
       propertyPath: m_RootOrder

@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 0}
+  walkSounds:
+  - {fileID: 8300000, guid: 327381fec81b04d548166a23a009708b, type: 3}
   rigidbodies:
   - {fileID: 4956376504607141490}
   - {fileID: 6751414719688719835}

@@ -53,6 +53,7 @@ namespace Entities
         private float _lastJumpForce;
         private Platform _lastPlatform;
         private bool _jetpackEnabled;
+        private AudioSource _audioSource;
 
         private static readonly int JumpingAction = Animator.StringToHash("jumping");
         private static readonly int YVelocityAction = Animator.StringToHash("yVelocity");
@@ -68,6 +69,7 @@ namespace Entities
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnCollisionStay2D(Collision2D collision)
@@ -87,6 +89,12 @@ namespace Entities
             animator.SetBool(LandingAction, true);
             platform.OnPlayerEnter(this);
             _lastPlatform = platform;
+            
+            if (platform.walkSounds.Length > 0)
+            {
+                _audioSource.clip = platform.walkSounds[Random.Range(0, platform.walkSounds.Length)];
+                _audioSource.Play();
+            }
 
             if (_jetpackEnabled)
             {
@@ -103,6 +111,11 @@ namespace Entities
             }
 
             pickup.OnPlayerCollect(this);
+            if (pickup.collectSounds.Length > 0)
+            {
+                _audioSource.clip = pickup.collectSounds[Random.Range(0, pickup.collectSounds.Length)];
+                _audioSource.Play();
+            }
         }
 
         private void Update()

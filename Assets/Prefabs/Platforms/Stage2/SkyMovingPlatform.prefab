@@ -105,6 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 0}
+  walkSounds:
+  - {fileID: 8300000, guid: 05c17c19b849e413e90a0f58e5453df4, type: 3}
+  - {fileID: 8300000, guid: d86a3c89b8b734dd2a1180828212efe0, type: 3}
+  - {fileID: 8300000, guid: 424cb2ec27b16462ebfa17b49c5425d9, type: 3}
   speed: 3.5
 --- !u!1001 &9118614328628287574
 PrefabInstance:

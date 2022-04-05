@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05c17c19b849e413e90a0f58e5453df4, type: 3}
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d86a3c89b8b734dd2a1180828212efe0, type: 3}
+    - target: {fileID: -820933543944432820, guid: 1b9244ba848424ab4bafbdc48de9524e,
+        type: 3}
+      propertyPath: walkSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 424cb2ec27b16462ebfa17b49c5425d9, type: 3}
     - target: {fileID: 4653320455351390841, guid: 1b9244ba848424ab4bafbdc48de9524e,
         type: 3}
       propertyPath: m_RootOrder

@@ -10,6 +10,7 @@ namespace Pickups
 
         public string label;
         public Platform platform;
+        public AudioClip[] collectSounds;
             
         #endregion
 
@@ -28,11 +29,8 @@ namespace Pickups
                 return;
             }
             
-            // TODO:
-            // - Mark the pickup on the player (for some)
-            // - Maybe have an internal cooldown, if necessary which removes the pickup after some time (co-routine?)
-
             _collected = true;
+
             platform.CollectPickup(player);
             
             player.ShowTooltip($"Collected {label}");
