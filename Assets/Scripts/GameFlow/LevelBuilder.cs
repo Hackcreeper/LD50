@@ -19,6 +19,7 @@ namespace GameFlow
         public float difficultyMultiplier = 0.0001f;
 
         public TextMeshProUGUI stageLabel;
+        public AudioSource audioSource;
         
         #endregion
         
@@ -38,6 +39,9 @@ namespace GameFlow
         {
             _camera = flowCamera.GetComponent<Camera>();
             _lastStage = stages[0];
+
+            audioSource.clip = stages[0].music;
+            audioSource.Play();
         }
 
         private void Update()
@@ -68,6 +72,9 @@ namespace GameFlow
                     LeanTween.scale(stageLabel.rectTransform, Vector3.zero, 0.5f).setDelay(2f);
                     Time.timeScale = _lastStage.speed;
                 });
+
+            audioSource.clip = _lastStage.music;
+            audioSource.Play();
         }
         
         private void HandlePlatforms()
